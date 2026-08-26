@@ -10,11 +10,11 @@ export default function Comment({ comment }: { comment: CommentType }) {
         <div>
             <div className={`meta${collapse ? ' meta-collapse' : ''}`}>
                 <span className="collapse" onClick={() => setCollapse(!collapse)}>[{collapse ? '+' : '-'}]</span>{' '}
-                <Link to={`/user/${comment.user}`}>{comment.user}</Link><span className="time">{comment.time_ago}</span>
+                <Link to={`/user/${comment.user}`}>{comment.user}</Link>{' '}<span className="time">{comment.time_ago}</span>
             </div>
             <div className="comment-tree"><div hidden={collapse}>
                 <p className="comment-text" dangerouslySetInnerHTML={{ __html: comment.content }}></p>
-                <ul className="subtree">{comment.comments.map((subComment) => <li key={subComment.id}><Comment comment={subComment} /></li>)}</ul>
+                <ul className="subtree">{comment.comments?.map((subComment) => <li key={subComment.id}><Comment comment={subComment} /></li>)}</ul>
             </div></div>
         </div>
     );

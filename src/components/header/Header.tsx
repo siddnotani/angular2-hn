@@ -1,20 +1,19 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSettings } from '../../context/SettingsContext';
 import Settings from '../settings/Settings';
 import './Header.scss';
 
 export default function Header() {
     const { settings, toggleSettings } = useSettings();
-    const { pathname } = useLocation();
     const scrollTop = () => window.scrollTo(0, 0);
     const navClass = ({ isActive }: { isActive: boolean }) => isActive ? 'active' : '';
     return (
         <header>
             <div id="header">
-                <Link className={`home-link${pathname.startsWith('/news/') ? ' active' : ''}`} to="/news/1" onClick={scrollTop}>
+                <NavLink className={({ isActive }) => `home-link${isActive ? ' active' : ''}`} to="/news/1" onClick={scrollTop}>
                     <div className="logo-inner"></div>
                     <img className="logo" src="/assets/images/logo.svg" alt="Logo" />
-                </Link>
+                </NavLink>
                 <div className="header-text"><div className="left"><span className="header-nav">
                     <NavLink to="/newest/1" className={navClass} onClick={scrollTop}>new</NavLink>{' | '}
                     <NavLink to="/show/1" className={navClass} onClick={scrollTop}>show</NavLink>{' | '}

@@ -37,6 +37,8 @@ speed-measure-plugin.json
 /connect.lock
 /coverage
 *.tsbuildinfo
+/playwright-report
+/test-results
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log

@@ -6,5 +6,5 @@ export interface Comment {
     time_ago: string;
     content: string;
     deleted: boolean;
-    comments: Comment[];
+    comments?: Comment[];
 }

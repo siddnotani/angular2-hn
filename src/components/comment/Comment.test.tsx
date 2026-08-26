@@ -21,4 +21,13 @@ describe('Comment', () => {
         expect(screen.getByText('[+]')).toBeInTheDocument();
         expect(screen.getByText('Nested child text').closest('div[hidden]')).toBeInTheDocument();
     });
+
+    it('renders a leaf comment without a comments field', () => {
+        const leafComment: CommentType = {
+            id: 3, level: 0, user: 'leaf', time: 3, time_ago: 'just now',
+            content: 'Leaf text', deleted: false
+        };
+        render(<MemoryRouter><Comment comment={leafComment} /></MemoryRouter>);
+        expect(screen.getByText('Leaf text')).toBeInTheDocument();
+    });
 });
