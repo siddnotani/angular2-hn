@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/dev-dist
 /tmp
 /out-tsc
 # Only exists if Bazel was run
@@ -35,6 +36,7 @@ speed-measure-plugin.json
 /.sass-cache
 /connect.lock
 /coverage
+*.tsbuildinfo
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
