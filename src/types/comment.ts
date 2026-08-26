@@ -1,4 +1,4 @@
-export class Comment {
+export interface Comment {
     id: number;
     level: number;
     user: string;
@@ -6,5 +6,5 @@ export class Comment {
     time_ago: string;
     content: string;
     deleted: boolean;
-    comments: Comment[];
+    comments?: Comment[];
 }
