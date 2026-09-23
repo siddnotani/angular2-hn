@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { HackerNewsAPIService } from '../shared/services/hackernews-api.service';
 import { SettingsService } from '../shared/services/settings.service';
@@ -10,9 +10,11 @@ import { Story } from '../shared/models/story';
 import { Settings } from '../shared/models/settings';
 
 @Component({
-  selector: 'app-item-details',
-  templateUrl: './item-details.component.html',
-  styleUrls: ['./item-details.component.scss']
+    selector: 'app-item-details',
+    templateUrl: './item-details.component.html',
+    styleUrls: ['./item-details.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ItemDetailsComponent implements OnInit {
   sub: Subscription;
@@ -31,10 +33,10 @@ export class ItemDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      let itemID = +params['id'];
+      const itemID = +params['id'];
       this._hackerNewsAPIService.fetchItemContent(itemID).subscribe(item => {
         this.item = item;
-      }, error => this.errorMessage = 'Could not load item comments.');
+      }, () => this.errorMessage = 'Could not load item comments.');
     });
     window.scrollTo(0, 0);
   }

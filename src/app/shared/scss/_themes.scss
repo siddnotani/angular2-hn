@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import "./media";
 @import "./theme_variables";
 
@@ -142,10 +143,10 @@
               }
 
               &:before {
-                border-top: $skull-size / 8 solid $wrapper-background-color;
+                border-top: math.div($skull-size, 8) solid $wrapper-background-color;
 
                 @media #{$mobile-only} {
-                  border-top: $skull-size / 8 solid $wrapper-mobile-background-color;
+                  border-top: math.div($skull-size, 8) solid $wrapper-mobile-background-color;
                 }
               }
             }

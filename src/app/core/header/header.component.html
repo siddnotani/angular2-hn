@@ -1,25 +1,27 @@
 <header>
-    <div id="header">
-      <a class="home-link" routerLink="/news/1" routerLinkActive="active" (click)="scrollTop()">
-        <div class="logo-inner"></div>
-        <img class="logo" src="assets/images/logo.svg" alt="Logo">
-      </a>
-      <div class="header-text">
-        <div class="left">
-          <span class="header-nav">
-            <a routerLink="/newest/1" routerLinkActive="active" (click)="scrollTop()">new</a>
-              |
-            <a routerLink="/show/1" routerLinkActive="active" (click)="scrollTop()">show</a>
-              |
-            <a routerLink="/ask/1" routerLinkActive="active" (click)="scrollTop()">ask</a>
-              |
-            <a routerLink="/jobs/1" routerLinkActive="active" (click)="scrollTop()">jobs</a>
-          </span>
-        </div>
-      </div>
-      <div class="info">
-        <img class="settings" src="assets/images/cog.svg" alt="Settings" (click)="toggleSettings()">
+  <div id="header">
+    <a class="home-link" routerLink="/news/1" routerLinkActive="active" (click)="scrollTop()">
+      <div class="logo-inner"></div>
+      <img class="logo" src="assets/images/logo.svg" alt="Logo">
+    </a>
+    <div class="header-text">
+      <div class="left">
+        <span class="header-nav">
+          <a routerLink="/newest/1" routerLinkActive="active" (click)="scrollTop()">new</a>
+          |
+          <a routerLink="/show/1" routerLinkActive="active" (click)="scrollTop()">show</a>
+          |
+          <a routerLink="/ask/1" routerLinkActive="active" (click)="scrollTop()">ask</a>
+          |
+          <a routerLink="/jobs/1" routerLinkActive="active" (click)="scrollTop()">jobs</a>
+        </span>
       </div>
     </div>
-    <app-settings *ngIf="settings.showSettings"></app-settings>
-  </header>
+    <div class="info">
+      <img class="settings" src="assets/images/cog.svg" alt="Settings" (click)="toggleSettings()">
+    </div>
+  </div>
+  @if (settings.showSettings) {
+    <app-settings></app-settings>
+  }
+</header>

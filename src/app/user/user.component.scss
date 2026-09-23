@@ -1,7 +1,7 @@
 @import "../shared/scss/media";
 @import "../shared/scss/theme_variables";
 
-:host >>> pre {
+:host ::ng-deep pre {
   white-space: pre-wrap;
 }
 
