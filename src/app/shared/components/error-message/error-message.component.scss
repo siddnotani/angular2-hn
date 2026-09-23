@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import "../../scss/media";
 @import "../../scss/theme_variables";
 
@@ -65,9 +66,9 @@
           content: "";
           position: absolute;
           top: 100%;
-          left: $skull-size / 15;
-          border-right: $skull-size / 20 solid transparent;
-          border-left: $skull-size / 40 solid transparent;
+          left: math.div($skull-size, 15);
+          border-right: math.div($skull-size, 20) solid transparent;
+          border-left: math.div($skull-size, 40) solid transparent;
         }
       }
     }
@@ -77,7 +78,7 @@
       position: absolute;
       top: 75%;
       left: 30%;
-      border-radius: 0 0 $skull-size / 10 $skull-size / 10;
+      border-radius: 0 0 math.div($skull-size, 10) math.div($skull-size, 10);
       &:before {
         content: "";
         position: absolute;
