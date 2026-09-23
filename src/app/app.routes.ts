@@ -40,4 +40,4 @@ const routes: Routes = [
 
 
 // - Updated Export
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
