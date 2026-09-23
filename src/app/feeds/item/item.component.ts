@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Story } from '../../shared/models/story';
 
 import { SettingsService } from '../../shared/services/settings.service';
@@ -9,6 +9,7 @@ import { Settings } from '../../shared/models/settings';
     selector: 'item',
     templateUrl: './item.component.html',
     styleUrls: ['./item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ItemComponent {

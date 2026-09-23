@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Comment } from '../../shared/models/comment';
 
@@ -6,13 +6,12 @@ import { Comment } from '../../shared/models/comment';
     selector: 'app-comment',
     templateUrl: './comment.component.html',
     styleUrls: ['./comment.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CommentComponent implements OnInit {
   @Input() comment: Comment;
   collapse: boolean;
-
-  constructor() {}
 
   ngOnInit() {
     this.collapse = false;
