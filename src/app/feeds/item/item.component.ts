@@ -5,10 +5,11 @@ import { SettingsService } from '../../shared/services/settings.service';
 import { Settings } from '../../shared/models/settings';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.scss'],
+    standalone: false
 })
 export class ItemComponent {
   @Input() item: Story;

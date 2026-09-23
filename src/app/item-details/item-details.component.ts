@@ -10,9 +10,10 @@ import { Story } from '../shared/models/story';
 import { Settings } from '../shared/models/settings';
 
 @Component({
-  selector: 'app-item-details',
-  templateUrl: './item-details.component.html',
-  styleUrls: ['./item-details.component.scss']
+    selector: 'app-item-details',
+    templateUrl: './item-details.component.html',
+    styleUrls: ['./item-details.component.scss'],
+    standalone: false
 })
 export class ItemDetailsComponent implements OnInit {
   sub: Subscription;
