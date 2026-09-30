@@ -1,0 +1,10 @@
+@import "../../shared/scss/media";
+
+.empty-message {
+  font-size: 15px;
+  padding: 0 40px;
+
+  @media #{$mobile-only} {
+    padding: 60px 15px 0;
+  }
+}
