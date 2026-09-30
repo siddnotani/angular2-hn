@@ -20,6 +20,7 @@
     <a [routerLink]="['/item', item.id]" routerLinkActive="active" class="comment-number" *ngIf="item.type !== 'job'"> •
       {{item.comments_count | comment }}
     </a>
+    • <a class="save-toggle" (click)="toggleSaved()">{{ isSaved ? 'unsave' : 'save' }}</a>
     </div>
   </div>
   <div class="subtext-laptop">
@@ -34,6 +35,7 @@
           {{item.comments_count | comment }}
         </a>
       </span>
+      | <a class="save-toggle" (click)="toggleSaved()">{{ isSaved ? 'unsave' : 'save' }}</a>
     </span>
   </div>
 </div>
