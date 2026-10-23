@@ -1,0 +1,20 @@
+@use './media' as *;
+@use './theme_variables' as *;
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background: $wrapper-background-color;
+  color: $wrapper-color;
+
+  @media #{$mobile-only} {
+    background: $wrapper-mobile-background-color;
+  }
+}
