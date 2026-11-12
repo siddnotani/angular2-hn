@@ -4,15 +4,15 @@
 // - Styles in `Name.ng.scss` get a `[data-c-<scope>]` attribute appended to every compound
 //   selector, like Angular's `[_ngcontent-xxx]`. `:host` becomes `[data-h-<scope>]` and
 //   anything after `::ng-deep` is left unscoped.
-// - A Babel plugin adds `data-c-<scope>` to every intrinsic JSX element (and to `Link`/`NavLink`,
-//   which forward props to `<a>`) in any file that imports `./Name.ng.scss`. A JSX attribute
+// - A Babel plugin adds `data-c-<scope>` to every intrinsic JSX element (and to `Link`/`NavLink`/
+//   `RouterLink`, which forward props to `<a>`) in any file that imports `./Name.ng.scss`. A JSX attribute
 //   `ngHost="<scope>"` becomes `data-h-<scope>`, marking a component's host element.
 import type { PluginObj, types as BabelTypes } from '@babel/core';
 import type { AtRule, Plugin as PostcssPlugin, Rule } from 'postcss';
 import selectorParser from 'postcss-selector-parser';
 
 export const NG_STYLE_SUFFIX = '.ng.scss';
-const DOM_FORWARDING_COMPONENTS = new Set(['Link', 'NavLink']);
+const DOM_FORWARDING_COMPONENTS = new Set(['Link', 'NavLink', 'RouterLink']);
 
 export function scopeFromFile(file: string): string | null {
   const clean = file.split('?')[0].replace(/\\/g, '/');

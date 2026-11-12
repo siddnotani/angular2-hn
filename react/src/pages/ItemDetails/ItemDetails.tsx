@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useItem } from '../../api/queries';
 import { Comment } from '../../components/Comment/Comment';
 import { ErrorMessage } from '../../components/ErrorMessage/ErrorMessage';
 import { Loader } from '../../components/Loader/Loader';
+import { RouterLink } from '../../components/RouterLink/RouterLink';
 import type { Story } from '../../models/story';
 import { useSettings } from '../../settings/SettingsContext';
 import { formatCommentCount } from '../../utils/formatCommentCount';
@@ -13,7 +14,6 @@ import './ItemDetails.ng.scss';
 
 // Port of ItemDetailsComponent. Angular reused it when only :id changed, so the previous item
 // stays up until the next one arrives, and an error only shows if nothing has loaded yet.
-// NavLink stands in for `routerLinkActive="active"`.
 export default function ItemDetails() {
   const params = useParams();
   const itemID = +params.id!;
@@ -82,13 +82,13 @@ function ItemBody({ item, goBack, target, rel }: BodyProps) {
           <span className="back-button" onClick={goBack}></span>
           {hasUrl && (
             <a className="title" href={item.url} target={target} rel={rel}>
-              {' '}{item.title}{' '}
+              {` ${item.title} `}
             </a>
           )}
           {!hasUrl && (
-            <NavLink className="title" to={`/item/${item.id}`}>
-              {' '}{item.title}{' '}
-            </NavLink>
+            <RouterLink className="title" to={`/item/${item.id}`}>
+              {` ${item.title} `}
+            </RouterLink>
           )}
         </p>
       </div>
@@ -96,30 +96,30 @@ function ItemBody({ item, goBack, target, rel }: BodyProps) {
         {hasUrl && (
           <p>
             <a className="title" href={item.url} target={target} rel={rel}>
-              {' '}{item.title}{' '}
+              {` ${item.title} `}
             </a>
-            {item.domain && <span className="domain">({item.domain})</span>}
+            {item.domain && <span className="domain">{`(${item.domain})`}</span>}
           </p>
         )}
         {!hasUrl && (
           <p>
-            <NavLink className="title" to={`/item/${item.id}`}>
-              {' '}{item.title}{' '}
-            </NavLink>
+            <RouterLink className="title" to={`/item/${item.id}`}>
+              {` ${item.title} `}
+            </RouterLink>
           </p>
         )}
         <div className="subtext">
           {!isJob && (
             <span>
-              {' '}{item.points} points by <NavLink to={`/user/${item.user}`}>{item.user}</NavLink>
+              {` ${item.points} points by `}<RouterLink to={`/user/${item.user}`}>{item.user}</RouterLink>
             </span>
           )}
           <span className={isJob ? undefined : 'item-details'}>
-            {' '}{item.time_ago}{' '}
+            {` ${item.time_ago} `}
             {!isJob && (
               <span>
-                {' '}|{' '}
-                <NavLink to={`/item/${item.id}`}> {formatCommentCount(item.comments_count)} </NavLink>
+                {' | '}
+                <RouterLink to={`/item/${item.id}`}>{` ${formatCommentCount(item.comments_count)} `}</RouterLink>
               </span>
             )}
           </span>
@@ -130,7 +130,7 @@ function ItemBody({ item, goBack, target, rel }: BodyProps) {
           {item.poll!.map((pollResult, i) => (
             <div key={i} className="pollContent">
               <div dangerouslySetInnerHTML={sanitizeHtml(pollResult.content)}></div>
-              <div className="subtext">{pollResult.points} points</div>
+              <div className="subtext">{`${pollResult.points} points`}</div>
               <div className="pollBar" style={{ width: (pollResult.points / item.poll_votes_count!) * 100 + '%' }}></div>
             </div>
           ))}

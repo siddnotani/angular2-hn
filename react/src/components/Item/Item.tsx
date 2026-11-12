@@ -24,15 +24,15 @@ export function Item({ item }: { item: Story }) {
             target={settings.openLinkInNewTab ? '_blank' : undefined}
             rel={settings.openLinkInNewTab ? 'noopener' : undefined}
           >
-            {' '}{item.title}{' '}
+            {` ${item.title} `}
           </a>
-          {item.domain && <span className="domain">({item.domain})</span>}
+          {item.domain && <span className="domain">{`(${item.domain})`}</span>}
         </p>
       )}
       {!hasUrl && (
         <p>
           <Link className="title" style={titleStyle} to={`/item/${item.id}`}>
-            {' '}{item.title}{' '}
+            {` ${item.title} `}
           </Link>
         </p>
       )}
@@ -42,14 +42,14 @@ export function Item({ item }: { item: Story }) {
             <span className="name">
               <Link to={`/user/${item.user}`}>{item.user}</Link>
             </span>
-            <span className="right">{item.points} ★</span>
+            <span className="right">{`${item.points} ★`}</span>
           </div>
         )}
         <div className="details">
-          {' '}{item.time_ago}{' '}
+          {` ${item.time_ago} `}
           {!isJob && (
             <Link to={`/item/${item.id}`} className="comment-number">
-              {' '}• {formatCommentCount(item.comments_count)}{' '}
+              {` • ${formatCommentCount(item.comments_count)} `}
             </Link>
           )}
         </div>
@@ -57,15 +57,15 @@ export function Item({ item }: { item: Story }) {
       <div className="subtext-laptop">
         {!isJob && (
           <span>
-            {' '}{item.points} points by <Link to={`/user/${item.user}`}>{item.user}</Link>
+            {` ${item.points} points by `}<Link to={`/user/${item.user}`}>{item.user}</Link>
           </span>
         )}
         <span className={isJob ? undefined : 'item-details'}>
-          {' '}{item.time_ago}{' '}
+          {` ${item.time_ago} `}
           {!isJob && (
             <span>
-              {' '}|{' '}
-              <Link to={`/item/${item.id}`}> {formatCommentCount(item.comments_count)} </Link>
+              {' | '}
+              <Link to={`/item/${item.id}`}>{` ${formatCommentCount(item.comments_count)} `}</Link>
             </span>
           )}
         </span>
