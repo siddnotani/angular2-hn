@@ -1,0 +1,23 @@
+{
+  "name": "angular2-hn-parity",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "lighthouse": "node lighthouse.mjs",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "@types/node": "20.19.9",
+    "@types/pngjs": "6.0.5",
+    "lighthouse": "12.8.2",
+    "pixelmatch": "7.1.0",
+    "pngjs": "7.0.0",
+    "puppeteer-core": "24.17.1",
+    "typescript": "5.8.3"
+  }
+}
