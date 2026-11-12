@@ -20,6 +20,9 @@ function signalSafe(fetchFn: typeof fetch): typeof fetch {
   };
 }
 
+// jsdom doesn't implement scrolling.
+if (typeof window !== 'undefined') window.scrollTo = vi.fn() as typeof window.scrollTo;
+
 let mswFetch: typeof fetch;
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'error' });
