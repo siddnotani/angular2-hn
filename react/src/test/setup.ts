@@ -30,7 +30,7 @@ afterEach(() => {
   cleanup();
   server.resetHandlers();
   server.events.removeAllListeners();
-  localStorage.clear();
+  globalThis.localStorage?.clear();
 });
 afterAll(() => {
   globalThis.fetch = mswFetch;
