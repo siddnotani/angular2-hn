@@ -6,6 +6,7 @@ import { MemoryRouter, useLocation } from 'react-router-dom';
 
 import { createQueryClient } from '../api/queries';
 import { AppRoutes } from '../routes';
+import { routerFuture } from '../routerFuture';
 import { SettingsProvider } from '../settings/SettingsProvider';
 import { mockColorScheme } from './matchMedia';
 
@@ -21,7 +22,7 @@ export function Providers({ path = '/', children }: { path?: string; children: R
   return (
     <QueryClientProvider client={createQueryClient()}>
       <SettingsProvider>
-        <MemoryRouter initialEntries={[path]}>
+        <MemoryRouter initialEntries={[path]} future={routerFuture}>
           {children}
           <LocationSpy />
         </MemoryRouter>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { createQueryClient } from './api/queries';
+import { routerFuture } from './routerFuture';
 import { AppRoutes } from './routes';
 import { SettingsProvider } from './settings/SettingsProvider';
 
@@ -11,7 +12,7 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <SettingsProvider>
-        <BrowserRouter>
+        <BrowserRouter future={routerFuture}>
           <AppRoutes />
         </BrowserRouter>
       </SettingsProvider>
