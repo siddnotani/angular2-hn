@@ -23,6 +23,11 @@ function signalSafe(fetchFn: typeof fetch): typeof fetch {
 // jsdom doesn't implement scrolling.
 if (typeof window !== 'undefined') window.scrollTo = vi.fn() as typeof window.scrollTo;
 
+// index.html defines the GA `ga()` queue; tests get a fresh spy each.
+beforeEach(() => {
+  if (typeof window !== 'undefined') window.ga = vi.fn();
+});
+
 let mswFetch: typeof fetch;
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'error' });

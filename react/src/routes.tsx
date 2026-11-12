@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
+import { PageViews } from './analytics/PageViews';
 import { Layout } from './components/Layout/Layout';
 import { FEEDS } from './models/feedType';
 import { RenderErrorBoundary } from './components/RenderErrorBoundary/RenderErrorBoundary';
@@ -37,11 +38,13 @@ export function AppRoutes() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<RedirectToNews />} />
-        {FEEDS.map(feed => (
-          <Route key={feed} path={`${feed}/:page`} caseSensitive element={<Feed key={feed} feedType={feed} />} />
-        ))}
-        <Route path="item/:id" caseSensitive element={<LazyPage page={ItemDetails} />} />
-        <Route path="user/:id" caseSensitive element={<LazyPage page={User} />} />
+        <Route element={<PageViews />}>
+          {FEEDS.map(feed => (
+            <Route key={feed} path={`${feed}/:page`} caseSensitive element={<Feed key={feed} feedType={feed} />} />
+          ))}
+          <Route path="item/:id" caseSensitive element={<LazyPage page={ItemDetails} />} />
+          <Route path="user/:id" caseSensitive element={<LazyPage page={User} />} />
+        </Route>
         <Route path="*" element={null} />
       </Route>
     </Routes>
