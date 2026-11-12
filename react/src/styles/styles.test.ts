@@ -30,6 +30,9 @@ describe('ported SCSS', () => {
     ['components/Loader/Loader.ng.scss', 'shared/components/loader/loader.component.scss'],
     ['components/ErrorMessage/ErrorMessage.ng.scss', 'shared/components/error-message/error-message.component.scss'],
     ['pages/ItemDetails/ItemDetails.ng.scss', 'item-details/item-details.component.scss'],
+    ['components/Header/Header.ng.scss', 'core/header/header.component.scss'],
+    ['components/Footer/Footer.ng.scss', 'core/footer/footer.component.scss'],
+    ['components/Settings/Settings.ng.scss', 'core/settings/settings.component.scss'],
   ])('%s compiles to the same CSS as %s', (react, angular) => {
     expect(compile(`../${react}`)).toBe(compile(`../../../src/app/${angular}`));
   });

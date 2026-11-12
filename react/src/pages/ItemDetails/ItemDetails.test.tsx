@@ -9,7 +9,7 @@ import type { Story } from '../../models/story';
 import { AppRoutes } from '../../routes';
 import { fixture, fixtureManifest } from '../../test/fixtures';
 import { mockColorScheme } from '../../test/matchMedia';
-import { location, Providers, renderApp } from '../../test/renderApp';
+import { location, pageContent, Providers, renderApp } from '../../test/renderApp';
 import { server } from '../../test/server';
 
 const { storyId, pollId, askId, jobId } = fixtureManifest;
@@ -125,7 +125,7 @@ describe('ItemDetails', () => {
     vi.spyOn(console, 'error').mockImplementation(() => {});
     const { container } = renderApp('/item/99999999999');
     await waitFor(() => expect(container.querySelector('app-loader')).toBeNull());
-    expect(container.querySelector('.wrapper')!.innerHTML).toBe('');
+    expect(pageContent(container)).toBe('');
   });
 
   it('keeps the current item (no loader) while navigating to another item, then swaps it', async () => {
@@ -168,7 +168,7 @@ describe('ItemDetails', () => {
   it.each(['/item', '/item/', `/ITEM/${storyId}`])('renders nothing for %s', async path => {
     const { container } = renderApp(path);
     await new Promise(r => setTimeout(r, 20));
-    expect(container.querySelector('.wrapper')!.innerHTML).toBe('');
+    expect(pageContent(container)).toBe('');
   });
 
   it('carries Angular-style scope attributes', async () => {

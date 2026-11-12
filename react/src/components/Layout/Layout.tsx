@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
 import { useSettings } from '../../settings/SettingsContext';
+import { Footer } from '../Footer/Footer';
+import { Header } from '../Header/Header';
 import './Layout.ng.scss';
 
 // Port of AppComponent's template: the theme class sits on the outermost element so the
@@ -11,7 +13,9 @@ export function Layout() {
     <div className={settings.theme}>
       <div className="body-cover"></div>
       <div className="wrapper">
+        <Header />
         <Outlet />
+        <Footer />
       </div>
     </div>
   );

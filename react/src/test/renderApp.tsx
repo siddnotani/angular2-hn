@@ -39,3 +39,11 @@ export function renderApp(path: string) {
     </Providers>,
   );
 }
+
+// What the routed page rendered between <app-header> and <app-footer>.
+export function pageContent(container: HTMLElement) {
+  return [...container.querySelector('.wrapper')!.children]
+    .filter(el => el.tagName !== 'APP-HEADER' && el.tagName !== 'APP-FOOTER')
+    .map(el => el.outerHTML)
+    .join('');
+}
