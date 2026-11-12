@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 
 import type { Comment as CommentModel } from '../../models/comment';
 import { sanitizeHtml } from '../../utils/sanitizeHtml';
+import { RouterLink } from '../RouterLink/RouterLink';
 import './Comment.ng.scss';
 
 // Port of CommentComponent. Each comment owns its collapse state (starts expanded); collapsing
@@ -16,9 +16,9 @@ export function Comment({ comment }: { comment: CommentModel }) {
         <div>
           <div className={collapse ? 'meta meta-collapse' : 'meta'}>
             <span className="collapse" onClick={() => setCollapse(!collapse)}>
-              [{collapse ? '+' : '-'}]
+              {`[${collapse ? '+' : '-'}]`}
             </span>
-            <NavLink to={`/user/${comment.user}`}>{comment.user}</NavLink>
+            <RouterLink to={`/user/${comment.user}`}>{comment.user}</RouterLink>
             <span className="time">{comment.time_ago}</span>
           </div>
           <div className="comment-tree">
@@ -38,7 +38,7 @@ export function Comment({ comment }: { comment: CommentModel }) {
       {comment.deleted && (
         <div>
           <div className="deleted-meta">
-            <span className="collapse">[deleted]</span> | Comment Deleted{' '}
+            <span className="collapse">[deleted]</span>{' | Comment Deleted '}
           </div>
         </div>
       )}

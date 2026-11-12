@@ -39,13 +39,13 @@ export default function User() {
         <div className="profile">
           <div className="mobile item-header">
             <p className="title-block">
-              <span className="back-button" onClick={() => navigate(-1)}></span> Profile: {user.id}{' '}
+              <span className="back-button" onClick={() => navigate(-1)}></span>{` Profile: ${user.id} `}
             </p>
           </div>
           <div className="main-details">
             <span className="name">{user.id}</span>
-            <span className="right">{user.karma} ★</span>
-            <p className="age">Created {user.created}</p>
+            <span className="right">{`${user.karma} ★`}</span>
+            <p className="age">{`Created ${user.created}`}</p>
           </div>
           {user.about && (
             <div className="other-details">

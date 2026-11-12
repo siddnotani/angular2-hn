@@ -45,8 +45,9 @@ export function Feed({ feedType }: { feedType: FeedName }) {
         <div>
           {feedType === 'jobs' && (
             <p className="job-header">
-              {' '}These are jobs at startups that were funded by Y Combinator. You can also get a job at a YC startup
-              through <a href="https://triplebyte.com/?ref=yc_jobs">Triplebyte</a>.{' '}
+              {' These are jobs at startups that were funded by Y Combinator. You can also get a job at a YC startup through '}
+              <a href="https://triplebyte.com/?ref=yc_jobs">Triplebyte</a>
+              {'. '}
             </p>
           )}
           <ol className={feedType !== 'jobs' ? 'list-margin' : undefined} ref={ol => ol?.setAttribute('start', String(listStart))}>
@@ -61,12 +62,12 @@ export function Feed({ feedType }: { feedType: FeedName }) {
           <div className="nav">
             {listStart !== 1 && (
               <Link to={`/${feedType}/${pageNum - 1}`} className="prev">
-                {' '}‹ Prev{' '}
+                {' ‹ Prev '}
               </Link>
             )}
             {items.length === 30 && (
               <Link to={`/${feedType}/${pageNum + 1}`} className="more">
-                {' '}More ›{' '}
+                {' More › '}
               </Link>
             )}
           </div>

@@ -59,11 +59,12 @@ describe('ngEncapsulationBabel', () => {
       plugins: [ngEncapsulationBabel],
     })!.code;
 
-  it('adds the content attribute to intrinsic elements and Link/NavLink in files importing a .ng.scss', () => {
-    const out = run(`import './Feed.ng.scss';\nconst x = <div className="a"><Link to="/"/><NavLink to="/"/><Item/></div>;`);
+  it('adds the content attribute to intrinsic elements and Link/NavLink/RouterLink in files importing a .ng.scss', () => {
+    const out = run(`import './Feed.ng.scss';\nconst x = <div className="a"><Link to="/"/><NavLink to="/"/><RouterLink to="/"/><Item/></div>;`);
     expect(out).toContain('<div className="a" data-c-feed="">');
     expect(out).toContain('<Link to="/" data-c-feed="" />');
     expect(out).toContain('<NavLink to="/" data-c-feed="" />');
+    expect(out).toContain('<RouterLink to="/" data-c-feed="" />');
     expect(out).toContain('<Item />');
   });
 

@@ -25,8 +25,7 @@ export function Settings() {
           <div className="content">
             <div className="control-section">
               <h2>Links</h2>
-              <input type="checkbox" checked={settings.openLinkInNewTab} onChange={toggleOpenLinksInNewTab} /> Open
-              links in a new tab{' '}
+              <input type="checkbox" checked={settings.openLinkInNewTab} onChange={toggleOpenLinksInNewTab} />{' Open links in a new tab '}
             </div>
             <div className="theme-controls">
               <div className="control-section">
@@ -40,8 +39,8 @@ export function Settings() {
                         value={value}
                         checked={settings.theme === value}
                         onChange={() => setTheme(value)}
-                      />{' '}
-                      {label}{' '}
+                      />
+                      {` ${label} `}
                     </label>
                   </div>
                 ))}
@@ -50,7 +49,7 @@ export function Settings() {
                 <h2>Change Font</h2>
                 <div>
                   <label>
-                    {' '}Font size:{' '}
+                    {' Font size: '}
                     <input
                       min="1"
                       defaultValue={settings.titleFontSize}
@@ -62,7 +61,7 @@ export function Settings() {
                 </div>
                 <div>
                   <label>
-                    {' '}List spacing:{' '}
+                    {' List spacing: '}
                     <input
                       min="0"
                       defaultValue={settings.listSpacing}
