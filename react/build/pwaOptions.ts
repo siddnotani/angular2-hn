@@ -13,11 +13,12 @@ import type { VitePWAOptions } from 'vite-plugin-pwa';
 // "index": "/index.html" + ngsw's default navigationUrls → navigateFallback with the same exclusions.
 export const HASHED_CHUNK = /-[A-Za-z0-9_-]{8}\.(js|css)$/;
 
-export const NGSW_ASSET_FILE = /^\/[^/]*\.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)$/;
-
-export function isLazyAsset(url: URL, sameOrigin: boolean) {
-  return sameOrigin && (url.pathname.startsWith('/assets/') || NGSW_ASSET_FILE.test(url.pathname));
-}
+// Workbox copies this callback into sw.js by source text, so it must not reference anything
+// outside its own body.
+export const isLazyAsset = ({ url, sameOrigin }: { url: URL; sameOrigin: boolean }) =>
+  sameOrigin &&
+  (url.pathname.startsWith('/assets/') ||
+    /^\/[^/]*\.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)$/.test(url.pathname));
 
 export const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
@@ -30,9 +31,11 @@ export const pwaOptions: Partial<VitePWAOptions> = {
     navigateFallback: 'index.html',
     navigateFallbackDenylist: [/^\/(?:.+\/)?[^/]*\.[^/]*$/, /^\/(?:.+\/)?[^/]*__[^/]*$/, /^\/(?:.+\/)?[^/]*__[^/]*\/.*$/],
     cleanupOutdatedCaches: true,
+    // ngsw claims open clients on activation too.
+    clientsClaim: true,
     runtimeCaching: [
       {
-        urlPattern: ({ url, sameOrigin }) => isLazyAsset(url, sameOrigin),
+        urlPattern: isLazyAsset,
         handler: 'StaleWhileRevalidate',
         options: { cacheName: 'assets' },
       },
