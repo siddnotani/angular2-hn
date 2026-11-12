@@ -8,6 +8,9 @@ declare module 'react' {
     interface IntrinsicElements {
       'app-loader': HostProps;
       'app-error-message': HostProps;
+      'app-comment': HostProps;
+      'app-item-details': HostProps;
+      'app-user': HostProps;
     }
   }
 }
