@@ -1,14 +1,13 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { http, HttpResponse } from 'msw';
-import { Link } from 'react-router-dom';
 
 import { HNAPI_BASE_URL } from '../../api/baseUrl';
 import { FEEDS } from '../../models/feedType';
 import type { Story } from '../../models/story';
 import { fixture } from '../../test/fixtures';
 import { mockColorScheme } from '../../test/matchMedia';
-import { location, Providers, renderApp } from '../../test/renderApp';
+import { location, pageContent, Providers, renderApp } from '../../test/renderApp';
 import { AppRoutes } from '../../routes';
 import { server } from '../../test/server';
 
@@ -128,7 +127,6 @@ describe('Feed routes', () => {
     mockColorScheme(false);
     const { container } = render(
       <Providers path="/news/1">
-        <Link to="/show/1">show</Link>
         <AppRoutes />
       </Providers>,
     );
@@ -148,7 +146,7 @@ describe('Feed routes', () => {
 
   it.each(['/news', '/news/', '/NEWS/1', '/top/1', '/news/1/extra'])('renders nothing inside the layout for %s', path => {
     const { container } = renderApp(path);
-    expect(container.querySelector('.wrapper')!.children).toHaveLength(0);
+    expect(pageContent(container)).toBe('');
   });
 
   it('uses NaN for a non-numeric page, like +params.page', async () => {

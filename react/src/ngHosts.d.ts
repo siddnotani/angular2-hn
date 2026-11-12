@@ -11,6 +11,9 @@ declare module 'react' {
       'app-comment': HostProps;
       'app-item-details': HostProps;
       'app-user': HostProps;
+      'app-header': HostProps;
+      'app-footer': HostProps;
+      'app-settings': HostProps;
     }
   }
 }
