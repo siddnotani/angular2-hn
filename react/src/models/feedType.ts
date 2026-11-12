@@ -3,3 +3,5 @@ export type FeedType = 'poll' | 'story' | 'job' | 'link';
 
 // The feeds the router serves, passed to the API as `/${feed}?page=n`.
 export type Feed = 'news' | 'newest' | 'show' | 'ask' | 'jobs';
+
+export const FEEDS: Feed[] = ['news', 'newest', 'show', 'ask', 'jobs'];

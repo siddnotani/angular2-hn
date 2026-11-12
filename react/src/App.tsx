@@ -1,9 +1,9 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { createQueryClient } from './api/queries';
-import { Layout } from './components/Layout/Layout';
+import { AppRoutes } from './routes';
 import { SettingsProvider } from './settings/SettingsProvider';
 
 export function App() {
@@ -12,11 +12,7 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <SettingsProvider>
         <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="*" element={null} />
-            </Route>
-          </Routes>
+          <AppRoutes />
         </BrowserRouter>
       </SettingsProvider>
     </QueryClientProvider>
