@@ -14,7 +14,6 @@ declare let ga: Function;
 
 export class AppComponent {
   settings: Settings;
-  theme: string;
 
   constructor(
     private _settingsService: SettingsService,

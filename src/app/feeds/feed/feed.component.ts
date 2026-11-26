@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 import { HackerNewsAPIService } from '../../shared/services/hackernews-api.service';
@@ -13,8 +11,6 @@ import { Story } from '../../shared/models/story';
 })
 
 export class FeedComponent implements OnInit {
-  typeSub: Subscription;
-  pageSub: Subscription;
   items: Story[];
   feedType: string;
   pageNum: number;
@@ -27,13 +23,13 @@ export class FeedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.typeSub = this.route
+    this.route
       .data
       .subscribe(data => {
         this.feedType = (data as any).feedType;
       });
 
-    this.pageSub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.pageNum = params['page'] ? +params['page'] : 1;
       this._hackerNewsAPIService.fetchFeed(this.feedType, this.pageNum)
         .subscribe(
