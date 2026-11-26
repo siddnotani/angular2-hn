@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Subscription } from 'rxjs/Subscription';
 
 import { HackerNewsAPIService } from '../shared/services/hackernews-api.service';
 import { User } from '../shared/models/user';
@@ -12,7 +11,6 @@ import { User } from '../shared/models/user';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  sub: Subscription;
   user: User;
   errorMessage = '';
 
@@ -23,7 +21,7 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       let userID = params['id'];
       this._hackerNewsAPIService.fetchUser(userID).subscribe(data => {
         this.user = data;
