@@ -7,6 +7,13 @@ import { Story } from '../models/story';
 import { User } from '../models/user';
 import { PollResult } from '../models/poll-result';
 
+interface FirebaseUser {
+  id: string;
+  created: number;
+  karma: number;
+  about?: string;
+}
+
 // wrap fetch in observable so we can keep it chill
 @Injectable()
 export class HackerNewsAPIService {
@@ -41,7 +48,20 @@ export class HackerNewsAPIService {
   }
 
   fetchUser(id: string): Observable<User> {
-    return lazyFetch(`${this.baseUrl}/user/${id}`);
+    return lazyFetch<FirebaseUser | null>(
+      `https://hacker-news.firebaseio.com/v0/user/${encodeURIComponent(id)}.json`
+    ).pipe(map(user => {
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      return {
+        id: user.id,
+        created: new Date(user.created * 1000).toISOString().slice(0, 10),
+        karma: user.karma,
+        about: user.about
+      };
+    }));
   }
 }
 
