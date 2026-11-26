@@ -41,7 +41,7 @@ export class HackerNewsAPIService {
   }
 
   fetchUser(id: string): Observable<User> {
-    return lazyFetch(`${this.baseUrl}/user/${id}`);
+    return lazyFetch(`${this.baseUrl}/user/${encodeURIComponent(id)}`);
   }
 }
 
